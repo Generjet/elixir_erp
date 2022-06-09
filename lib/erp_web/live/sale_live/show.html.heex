@@ -1,0 +1,31 @@
+<h1>Show Sale</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.sale_show_path(@socket, :show, @sale)}>
+    <.live_component
+      module={ErpWeb.SaleLive.FormComponent}
+      id={@sale.id}
+      title={@page_title}
+      action={@live_action}
+      sale={@sale}
+      return_to={Routes.sale_show_path(@socket, :show, @sale)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Price:</strong>
+    <%= @sale.price %>
+  </li>
+
+  <li>
+    <strong>Amount:</strong>
+    <%= @sale.amount %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.sale_show_path(@socket, :edit, @sale), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.sale_index_path(@socket, :index) %></span>

@@ -1,0 +1,41 @@
+<h1>Listing Product name</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sale_index_path(@socket, :index)}>
+    <.live_component
+      module={ErpWeb.SaleLive.FormComponent}
+      id={@sale.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sale={@sale}
+      return_to={Routes.sale_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Amount</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="product_name">
+    <%= for sale <- @product_name do %>
+      <tr id={"sale-#{sale.id}"}>
+        <td><%= sale.price %></td>
+        <td><%= sale.amount %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.sale_show_path(@socket, :show, sale) %></span>
+          <span><%= live_patch "Edit", to: Routes.sale_index_path(@socket, :edit, sale) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sale.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Sale", to: Routes.sale_index_path(@socket, :new) %></span>
