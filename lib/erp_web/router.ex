@@ -32,6 +32,7 @@ defmodule ErpWeb.Router do
     live "/product_name/:id/show/edit", SaleLive.Show, :edit
 
     get "/", PageController, :index
+    get "/inquiry", InquiryController, :index
   end
 
   # Other scopes may use custom stacks.
