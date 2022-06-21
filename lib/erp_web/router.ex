@@ -2,12 +2,14 @@ defmodule ErpWeb.Router do
   use ErpWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "text"]
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, {ErpWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # өөрийн хийсэн Module Plug-ийг энд холбож болно super desu!
+    plug ErpWeb.Plugs.Locale, "mn"
   end
 
   pipeline :api do

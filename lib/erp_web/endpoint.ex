@@ -46,5 +46,17 @@ defmodule ErpWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  # өөрийн хийсэн жижиг function plug оруулж болно
+  plug :shalgah
   plug ErpWeb.Router
+
+  # өөрийн хийсэн жижиг function plug
+  def shalgah(conn, _opts) do
+    IO.puts """
+    Метод-Verb: #{inspect(conn.method)}
+    Host-сервер-info: #{inspect(conn.host)}
+    """
+    conn
+  end
+
 end
