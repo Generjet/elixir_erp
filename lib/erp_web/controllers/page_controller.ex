@@ -12,7 +12,7 @@ defmodule ErpWeb.PageController do
     # render(conn, :index)
     # === to render another layout do the following ===
     conn
-    |> put_root_layout("admin.html")
+    |> put_root_layout("bootstrap.html")
     |> put_flash(:info, "Лавлагаа мэдээллийн системд тавтай морил!")
     |> render("index.html")
     # # === to render NO layout do the following ===
