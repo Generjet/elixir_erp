@@ -49,7 +49,8 @@ defmodule Erp.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:jamdb_oracle, "~> 0.4.4"} # Add this line to connect with Oracle DB
     ]
   end
 
