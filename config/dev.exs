@@ -2,21 +2,35 @@ import Config
 
 # Configure your database
 config :erp, Erp.Repo,
-  database: Path.expand("../erp_dev.db", Path.dirname(__ENV__.file)),
-  pool_size: 5,
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true
+  database: System.get_env("ORACLE_DATABASE"),
+  username: System.get_env("ORACLE_USERNAME"),
+  password: System.get_env("ORACLE_PASSWORD"),
+  hostname: System.get_env("ORACLE_HOST"),
+  port: System.get_env("ORACLE_PORT")
+  #pool_size: 5,
 
-# For development, we disable any cache and enable
-# debugging and code reloading.
-#
-# The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+
+  # ==== from tutorial ======
+# config :erp, ErpWeb.Endpoint,
+#  http: [port:4000],
+#  debug_errors: true,
+#  code_reloader: true,
+#  check_origin: false,
+#  watchers: [
+#   node: [
+#    "node_modules/webpack/bin/webpack.js",
+#    "--mode",
+#    "development",
+#    "--watch-stdin",
+#    cd: Path.expand("../assets", __DIR__)
+#  ]
+# ]
+
+
+
 config :erp, ErpWeb.Endpoint,
-  # Binding to loopback ipv4 address prevents access from other machines.
-  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  # http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {192,168,64,62}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
